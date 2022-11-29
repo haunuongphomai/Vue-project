@@ -42,7 +42,7 @@
     </div>
   </main>
 </template>
-<!-- 
+
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
@@ -74,9 +74,9 @@ const Login = async () => {
     alert(res.message);
   }
 };
-</script> -->
+</script>
 
-<script>
+<!-- <script>
 export default {
   data() {
     return {
@@ -114,7 +114,7 @@ export default {
     },
   },
 };
-</script>
+</script> -->
 
 <style scoped>
 main {

@@ -26,7 +26,12 @@ const routes = [
     {
         path: '/add',
         name: 'Add',
-        component: () => import('@/views/AddOverlay.vue')
+        component: () => import('@/views/Add.vue')
+    },
+    {
+        path: '/modify',
+        name: 'Modify',
+        component: () => import('@/views/Modify.vue')
     }
 ]
 

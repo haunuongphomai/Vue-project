@@ -25,9 +25,9 @@
                 <button
                   type="button"
                   class="btn btn-warning"
-                  @click="this.$router.push('/add')"
+                  @click="this.$router.push('/modify')"
                 >
-                  Add
+                  Modify
                 </button>
               </div>
               <button
@@ -35,7 +35,7 @@
                 class="btn btn-outline-danger"
                 @click="Logout"
               >
-                Logout
+                Delete
               </button>
             </div>
           </td>
