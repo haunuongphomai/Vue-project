@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h1>Modify</h1>
-    <form @submit.prevent="modifyProduct">
+    <h1>Modify Staff</h1>
+    <form @submit.prevent="modifyStaff">
       <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
         <input
@@ -13,9 +13,9 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleInputPassword1">Price</label>
+        <label for="exampleInputPassword1">Gender</label>
         <input
-          v-model="price"
+          v-model="gender"
           type="text"
           class="form-control"
           id="exampleInputPassword1"
@@ -23,9 +23,9 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleInputPassword1">Amount</label>
+        <label for="exampleInputPassword1">Phone</label>
         <input
-          v-model="amount"
+          v-model="phone"
           type="text"
           class="form-control"
           id="exampleInputPassword1"
@@ -36,7 +36,7 @@
           <button
             type="button"
             class="btn btn-danger btn-lg"
-            @click="this.$router.push('/')"
+            @click="this.$router.push('/staff')"
           >
             Back
           </button>
@@ -55,34 +55,32 @@ export default {
   data() {
     return {
       name: "",
-      price: "",
-      amount: "",
+      gender: "",
+      phone: "",
     };
   },
   methods: {
-    async modifyProduct() {
+    async modifyStaff() {
       const id = location.pathname.split("/")[2];
-      const updatedProduct = {
+
+      const updatedStaff = {
         name: this.name,
-        price: this.price,
-        amount: this.amount,
+        gender: this.gender,
+        phone: this.phone,
       };
-      const res = axios.put(
-        `http://localhost:3333/product/${id}`,
-        updatedProduct
-      );
-      window.alert("Product modified successfully!");
+      const res = axios.put(`http://localhost:3333/staff/${id}`, updatedStaff);
+      window.alert("Staff modified successfully!");
     },
-    async retrieveProductData() {
+    async retrieveStaffData() {
       const id = location.pathname.split("/")[2];
-      const res = await axios.get(`http://localhost:3333/product/${id}`);
+      const res = await axios.get(`http://localhost:3333/staff/${id}`);
       this.name = res.data.result[0].name;
-      this.price = res.data.result[0].price;
-      this.amount = res.data.result[0].amount;
+      this.gender = res.data.result[0].gender;
+      this.phone = res.data.result[0].phone;
     },
   },
   mounted() {
-    this.retrieveProductData();
+    this.retrieveStaffData();
   },
 };
 </script>

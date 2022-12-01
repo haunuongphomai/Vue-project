@@ -3,32 +3,32 @@
     <div class="container">
       <header>
         <div class="header-title">
-          <h1 class="logo">Product Management</h1>
+          <h1 class="logo">Staff</h1>
         </div>
       </header>
-      <div class="table-product">
+      <div class="table-staff">
         <table>
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Price</th>
-              <th>Amount</th>
+              <th>Gender</th>
+              <th>Phone</th>
               <th>Action</th>
             </tr>
           </thead>
-          <tr v-for="item in listproduct" :key="item.id">
+          <tr v-for="item in liststaff" :key="item.id">
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.amount }}</td>
+            <td>{{ item.gender }}</td>
+            <td>{{ item.phone }}</td>
             <td>
               <div class="button-gr">
                 <div class="btn-add">
                   <button
                     type="button"
                     class="btn btn-warning"
-                    @click="modifyProduct(item.id)"
+                    @click="modifyStaff(item.id)"
                   >
                     Modify
                   </button>
@@ -36,7 +36,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-danger"
-                  @click="deleteProduct(item.id)"
+                  @click="deleteStaff(item.id)"
                 >
                   Delete
                 </button>
@@ -53,34 +53,33 @@ import axios from "axios";
 export default {
   data() {
     return {
-      listproduct: [],
+      liststaff: [],
     };
   },
   methods: {
-    async getAllProduct() {
-      let res = await axios.post("http://localhost:3333/getAllProduct", {});
+    async getAllStaff() {
+      let res = await axios.post("http://localhost:3333/getAllStaff", {});
     },
-    async deleteProduct(id) {
+    async deleteStaff(id) {
       console.log(id);
       if (
-        window.confirm(`Are you sure you want to delete product #${id}?`) ===
-        true
+        window.confirm(`Are you sure you want to delete staff #${id}?`) === true
       ) {
-        let res = await axios.delete(`http://localhost:3333/product/${id}`);
-        window.alert(`Product #${id} has been deleted successfully`);
+        let res = await axios.delete(`http://localhost:3333/staff/${id}`);
+        window.alert(`Staff #${id} has been deleted successfully`);
         location.reload();
         return;
       } else {
         return;
       }
     },
-    async modifyProduct(id) {
-      this.$router.push(`/modify/${id}`);
+    async modifyStaff(id) {
+      this.$router.push(`/modifyStaff/${id}`);
     },
   },
   async mounted() {
-    let res = await axios.get("http://localhost:3333/getAllProduct");
-    this.listproduct = res.data.result;
+    let res = await axios.get("http://localhost:3333/getAllStaff");
+    this.liststaff = res.data.result;
   },
 };
 </script>

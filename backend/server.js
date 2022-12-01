@@ -73,31 +73,6 @@ app.post('/login', async (req, res) => {
     }
 })
 
-app.get('/getAllProduct', async (req, res) => {
-    try {
-
-        con.query("SELECT * FROM product", function (err, result, fields) {
-            if (err) throw err;
-            res.json({
-                success: true,
-                message: 'User logged successfully',
-                result
-            })
-        });
-
-    } catch (err) {
-        console.log(err);
-
-        res.json({
-            success: false,
-            message: err.error_message,
-            err: err
-        })
-    }
-})
-
-
-
 app.post('/authenticate', async (req, res) => {
     const { session_token } = req.body;
 
@@ -142,7 +117,234 @@ app.post('/logout', async (req, res) => {
     }
 })
 
-app.get
+app.get('/getAllProduct', async (req, res) => {
+    try {
+
+        con.query("SELECT * FROM product", function (err, result, fields) {
+            if (err) throw err;
+            res.json({
+                success: true,
+                message: 'User logged successfully',
+                result
+            })
+        });
+
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+app.get('/getAllStaff', async (req, res) => {
+    try {
+
+        con.query("SELECT * FROM staff", function (err, result, fields) {
+            if (err) throw err;
+            res.json({
+                success: true,
+                message: 'User logged successfully',
+                result
+            })
+        });
+
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+
+
+app.post('/product', (req, res) => {
+    try {
+        con.query('INSERT INTO `product` (`id`, `name`, `price`, `amount`) VALUES( NULL, "' + req.body.name + '", "' + req.body.price + '", "' + req.body.amount + '")',
+            function (err, result, fields) {
+                if (err) throw err;
+                res.json({
+                    success: true,
+                    message: 'Product added successfully',
+                    result
+                })
+            }
+        )
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+app.get('/product/:id', (req, res) => {
+    try {
+        con.query('SELECT * FROM `product` WHERE `product`.`id` = ' + req.params.id, function (err, result, fields) {
+            if (err) throw err;
+            res.json({
+                success: true,
+                message: 'Product deleted successfully',
+                result
+            })
+        })
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+app.get('/staff/:id', (req, res) => {
+    try {
+        // "DELETE FROM product WHERE `product`.`id` = 1"
+        con.query('SELECT * FROM `staff` WHERE `staff`.`id` = ' + req.params.id, function (err, result, fields) {
+            if (err) throw err;
+            res.json({
+                success: true,
+                message: 'Product deleted successfully',
+                result
+            })
+        })
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+app.delete('/product/:id', (req, res) => {
+    try {
+        con.query('DELETE FROM `product` WHERE `product`.`id` = ' + req.params.id, function (err, result, fields) {
+            if (err) throw err;
+            res.json({
+                success: true,
+                message: 'Product deleted successfully',
+                result
+            })
+        })
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+app.post('/staff', (req, res) => {
+    try {
+        con.query('INSERT INTO `staff` (`id`, `name`, `gender`, `phone`) VALUES( NULL, "' + req.body.name + '", "' + req.body.gender + '", "' + req.body.phone + '")',
+            function (err, result, fields) {
+                if (err) throw err;
+                res.json({
+                    success: true,
+                    message: 'Staff added successfully',
+                    result
+                })
+            }
+        )
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+app.delete('/staff/:id', (req, res) => {
+    try {
+        con.query('DELETE FROM `staff` WHERE `staff`.`id` = ' + req.params.id, function (err, result, fields) {
+            if (err) throw err;
+            res.json({
+                success: true,
+                message: 'Staff deleted successfully',
+                result
+            })
+        })
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+app.put('/product/:id', (req, res) => {
+    // UPDATE `product` SET `amount` = '23' WHERE `product`.`id` = 4;
+    try {
+        con.query('UPDATE `product` SET `name` = "' + req.body.name + '", `price` = "' + req.body.price + '", `amount` = "' + req.body.amount + '" WHERE `product`.`id` = ' + req.params.id,
+            function (err, result, fields) {
+                if (err) throw err;
+                res.json({
+                    success: true,
+                    message: 'Product updated successfully',
+                    result
+                })
+            })
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+
+app.put('/staff/:id', (req, res) => {
+    try {
+        con.query('UPDATE `staff` SET `name` = "' + req.body.name + '", `gender` = "' + req.body.gender + '", `phone` = "' + req.body.phone + '" WHERE `staff`.`id` = ' + req.params.id,
+            function (err, result, fields) {
+                if (err) throw err;
+                res.json({
+                    success: true,
+                    message: 'Staff updated successfully',
+                    result
+                })
+            })
+    } catch (err) {
+        console.log(err);
+
+        res.json({
+            success: false,
+            message: err.error_message,
+            err: err
+        })
+    }
+})
+
+app.get('/', (req, res) => {
+    res.status(200).json({ message: "Hello" });
+})
 
 const PORT = process.env.PORT | 3333;
 app.listen(PORT, () => {

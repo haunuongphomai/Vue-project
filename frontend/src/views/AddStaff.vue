@@ -4,34 +4,21 @@ export default {
   data() {
     return {
       name: "",
-      price: "",
-      amount: "",
+      gender: "",
+      phone: "",
     };
   },
   methods: {
-    async addProduct() {
+    async addStaff() {
       try {
-        // const res = await fetch("http://localhost:3333/product", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({
-        //     name: this.name,
-        //     price: this.price,
-        //     amount: this.amount,
-        //   }),
-        // }).then((res) => res.json());
-
-        const newProduct = {
+        const newStaff = {
           name: this.name,
-          price: this.price,
-          amount: this.amount,
+          gender: this.gender,
+          phone: this.phone,
         };
 
-        let res = await axios.post("http://localhost:3333/product", newProduct);
-        window.alert("Product added successfully!");
-        // console.log(newProduct);
+        let res = await axios.post("http://localhost:3333/staff", newStaff);
+        window.alert("Staff added successfully!");
         console.log(res);
       } catch (error) {
         console.log(error);
@@ -43,8 +30,8 @@ export default {
 
 <template>
   <div class="container">
-    <h1>Add Product</h1>
-    <form @submit.prevent="addProduct">
+    <h1>Add Staff</h1>
+    <form @submit.prevent="addStaff">
       <div class="form-group">
         <label>Name</label>
         <input
@@ -56,9 +43,9 @@ export default {
       </div>
 
       <div class="form-group">
-        <label>Price</label>
+        <label>Gender</label>
         <input
-          v-model="price"
+          v-model="gender"
           type="text"
           class="form-control"
           id="exampleInputPassword1"
@@ -66,9 +53,9 @@ export default {
       </div>
 
       <div class="form-group">
-        <label>Amount</label>
+        <label>Phone</label>
         <input
-          v-model="amount"
+          v-model="phone"
           type="text"
           class="form-control"
           id="exampleInputPassword1"
@@ -79,7 +66,7 @@ export default {
           <button
             type="button"
             class="btn btn-danger btn-lg"
-            @click="this.$router.push('/')"
+            @click="this.$router.push('/staff')"
           >
             Back
           </button>

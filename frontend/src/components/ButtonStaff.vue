@@ -4,7 +4,7 @@
       <button
         type="button"
         class="btn btn-success btn-lg"
-        @click="this.$router.push('/add')"
+        @click="this.$router.push('/addStaff')"
       >
         Add
       </button>
@@ -52,6 +52,6 @@ export default {
 }
 
 .btn-add {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 </style>

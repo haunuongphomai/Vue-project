@@ -35,4 +35,13 @@ a:hover {
 .staff-btn {
   padding: 15px 0 15px 30px;
 }
+
+.search-input {
+  padding-top: 20px;
+  margin-left: 1470px;
+}
+
+input {
+  padding-right: 30px;
+}
 </style>

@@ -1,17 +1,17 @@
 <template>
   <Header />
-  <ProductList />
-  <Button />
+  <StaffList />
+  <ButtonStaff />
 </template>
 <script>
 import Header from "@/components/Header.vue";
-import ProductList from "@/components/ProductList.vue";
-import Button from "@/components/ButtonProduct.vue";
+import StaffList from "@/components/StaffList.vue";
+import ButtonStaff from "@/components/ButtonStaff.vue";
 export default {
   components: {
     Header,
-    ProductList,
-    Button,
+    StaffList,
+    ButtonStaff,
   },
 };
 </script>

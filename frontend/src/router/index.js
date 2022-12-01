@@ -29,9 +29,26 @@ const routes = [
         component: () => import('@/views/Add.vue')
     },
     {
-        path: '/modify',
+        path: '/modify/:id',
         name: 'Modify',
         component: () => import('@/views/Modify.vue')
+    },
+
+    {
+        path: '/modifyStaff/:id',
+        name: 'ModifyStaff',
+        component: () => import('@/views/ModifyStaff.vue')
+    },
+    {
+        path: '/staff',
+        name: 'Staff',
+        component: () => import('@/views/Staff.vue')
+
+    },
+    {
+        path: '/addStaff',
+        name: 'Add Staff',
+        component: () => import('@/views/AddStaff.vue')
     }
 ]
 
